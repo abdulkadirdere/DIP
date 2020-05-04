@@ -1,10 +1,10 @@
-clear all; clc;
+% clear all; clc;
 
-% Adaptive Histogram Equalisation
+% Q1.3. Adaptive Histogram Equalisation
 % read images
-road_low_1 = imread("road_low_1.jpg");
-road_low_2 = imread("road_low_2.jpg");
-sports_low = imread("sports_low.png");
+road_low_1 = imread("imgs/road_low_1.jpg");
+road_low_2 = imread("imgs/road_low_2.jpg");
+sports_low = imread("imgs/sports_low.png");
 
 % adaptive histogram equalisation of each image
 box_size = 9;
@@ -43,8 +43,7 @@ sgtitle("Subplot Grid of Adaptive Histogram Equalisation")
 
 function g = adaptiveHistEqual(subimage)
     original = subimage;
-    imsize = size(subimage);
-    row = imsize(1); column = imsize(2);
+    [row, column] = size(subimage);
     total_num_pixels = row * column; % this is MN
     L = power(2,8); % 8 bit image 256 [0,255]
     nk = zeros(1,L); % nk is the total number of each pixel in the image
@@ -95,9 +94,25 @@ g = subimage(2,2);
 end
 
 function adaptiveHE = sliding_window(image, box_size)
-    % sliding window function. Does not affect the adaptive histogram at
-    % all. As discussed before.
-    adaptiveHE = nlfilter(image, [box_size, box_size], @adaptiveHistEqual);
+    % sliding window function.
+    adaptiveHE = image;
+    half_box = floor(box_size/2);
+    [row, column] = size(image);
+    image = padarray(image,[3 3],'symmetric');
+    
+    for i=1:row
+        for j=1:column
+            left = i - half_box;
+            right = i + half_box;
+            down = j - half_box;
+            up = j + half_box;
+            
+            if (left >= 1 && right <= row && down >= 1 && up <= column)
+                window = image((left:right),(down:up));
+                adaptiveHE(i,j) = adaptiveHistEqual(window);
+            end
+        end
+    end
 end
 
 function imageAndHist(image, adaptive, imageName)
