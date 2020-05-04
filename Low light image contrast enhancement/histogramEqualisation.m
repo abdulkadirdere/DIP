@@ -2,9 +2,9 @@ clear all; clc;
 
 % Histogram Equalisation
 % read images
-road_low_1 = imread("road_low_1.jpg");
-road_low_2 = imread("road_low_2.jpg");
-sports_low = imread("sports_low.png");
+road_low_1 = imread("imgs/road_low_1.jpg");
+road_low_2 = imread("imgs/road_low_2.jpg");
+sports_low = imread("imgs/sports_low.png");
 
 % histogram equalisation of each image
 road_low_1_histEqualised = histEqual(road_low_1);

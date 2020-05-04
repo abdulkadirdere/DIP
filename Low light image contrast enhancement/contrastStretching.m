@@ -2,9 +2,9 @@ clear all; clc;
 
 % Contrast stretching
 % read images
-road_low_1 = imread("road_low_1.jpg");
-road_low_2 = imread("road_low_2.jpg");
-sports_low = imread("sports_low.png");
+road_low_1 = imread("imgs/road_low_1.jpg");
+road_low_2 = imread("imgs/road_low_2.jpg");
+sports_low = imread("imgs/sports_low.png");
 
 % histogram equalisation of each image
 contrast_road_low_1 = contrastStretching(road_low_1);
