@@ -1,6 +1,6 @@
 clear all; clc;
 
-% Q 1.1. Contrast stretching
+% Contrast stretching
 % read images
 road_low_1 = imread("road_low_1.jpg");
 road_low_2 = imread("road_low_2.jpg");

@@ -1,6 +1,7 @@
 clear all; clc;
 
-%% Question 2.1
+%% Frequency Domain Filtering
+% read the image
 zoneplate = imread("zoneplate.tif");
 
 %% Step1: convert the image to double

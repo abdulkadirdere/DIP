@@ -1,6 +1,6 @@
 clear all; clc;
 
-% Q1.3. Adaptive Histogram Equalisation
+% Adaptive Histogram Equalisation
 % read images
 road_low_1 = imread("road_low_1.jpg");
 road_low_2 = imread("road_low_2.jpg");
